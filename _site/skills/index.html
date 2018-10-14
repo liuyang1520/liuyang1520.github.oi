@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title></title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="/skills/">
+    <link rel="alternate" type="application/rss+xml" title="" href="/feed.xml" />
+
+    
+        <link rel="stylesheet" href="">
+    
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+    
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+</head>
+
+  <body>
+    <main>
+      <header class="site-header">
+  <div class="container">
+    <h1><a href="/">Arkdemic - Marvin Liu</a></h1>
+
+    <button type="button" class="sliding-panel-button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="navbar sliding-panel-content">
+      <ul>
+        
+          <li><a href="/about" title="About">About</a></li>
+        
+          <li><a href="/resume" title="Resume">Resume</a></li>
+        
+          <li><a href="/skills" title="Skills">Skills</a></li>
+        
+          <li><a href="/blog" title="Blog">Blog</a></li>
+        
+        <!-- <li><a href="http://github.com/liuyang1520/liuyang1520.github.io/archive/master.zip" title="Download">Download</a></li> -->
+        <li><a href="/feed.xml" target="_blank"><i class="icon icon-feed"></i></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="sliding-panel-fade-screen"></div>
+
+
+      <div class="container">
+        <article role="article" class="page card">
+
+  <header class="post-header">
+    <h1 class="post-title"></h1>
+  </header>
+
+  <div class="post-content">
+    <style>
+#search_tool {
+    position: relative;
+    height: 60px;
+    right: 10px;
+}
+
+#search_field {
+    height: 60px;
+    font-size: 30px;
+    display: inline-block;
+    font-weight: 100;
+    border: none;
+    outline: none;
+    color: #555;
+    padding: 3px;
+    padding-right: 60px;
+    width: 0px;
+    position: absolute;
+    background: none;
+    z-index: 3;
+    transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+    cursor: pointer;
+    right: 160px;
+    box-shadow: none;
+}
+
+#search_field:focus:hover {
+    border-bottom: 1px solid #BBB;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06)
+}
+
+#search_field:focus {
+    width: 700px;
+    z-index: 1;
+    border-bottom: 1px solid #BBB;
+    cursor: text;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06)
+}
+
+#search_submit {
+    height: 67px;
+    width: 63px;
+    display: inline-block;
+    color: red;
+    float: right;
+    background: url("/images/search_icon_45px.svg") center center no-repeat;
+    text-indent: -10000px;
+    border: none;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: opacity .4s ease;
+    right: 160px;
+    outline: none;
+}
+
+#search_submit:hover {
+    opacity: 0.8;
+}
+
+#expand_Button {
+	height: 67px;
+    width: 63px;
+    opacity: 0.3;
+    outline: none;
+    border: none;
+    position: absolute;
+    right: 80px;
+	background: url("/images/expand_icon_45px.svg") center center no-repeat;
+}
+
+#unexpand_Button {
+	height: 67px;
+    width: 63px;
+    opacity: 0.3;
+    outline: none;
+    border: none;
+    position: absolute;
+    right: 0;
+	background: url("/images/unexpand_icon_45px.svg") center center no-repeat;
+}
+
+ul li {
+	color: white;
+    padding: 10px 20px;
+    list-style-type: none;
+    &:nth-child(2) {
+        color: red;
+    };
+}
+</style>
+
+<div>
+    <div id="search_tool">
+        <form autocomplete="on">
+            <input id="search_field" name="highlight" type="text" placeholder="Highlight a skill :)">
+            <input id="search_submit" type="submit">
+            <input id="expand_Button" type="button" onclick="expandAll()">
+    		<input id="unexpand_Button" type="button" onclick="unexpandAll()">
+        </form>
+    </div>
+</div>
+<br>
+<div style="padding-left: 25px; text-align:center; color: white;">
+	<table>
+		<tr>
+    		<td style="background-color: red">Beginner <br> 1-3 months</td>
+	    	<td style="background-color: orange">Intermediate <br> 4-12 months</td>
+	    	<td style="background-color: green">Proficient <br> 1-2 years</td>
+	    	<td style="background-color: blue">Advanced <br> 3-5 years</td>
+	    	<td style="background-color: purple">Expert <br> 5+ years</td>
+  		</tr>
+	</table>
+</div>
+<div id="skill_list">
+</div>
+
+<script>
+	var data = [
+	{
+	    name: 'Programming Language:',
+	    percentage: 101,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Python',
+	    percentage: 80,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 80,
+	    },{
+	    	name: 'Matplotlib',
+	    	percentage: 70,
+	    },{
+	    	name: 'Django',
+	    	percentage: 10,
+	    }],
+	},
+	{
+	    name: 'Java',
+	    percentage: 60,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 60,
+	    },{
+	    	name: 'JUnit',
+	    	percentage: 50,
+	    }],
+	},
+	{
+	    name: 'C++',
+	    percentage: 50,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 50,
+	    },{
+	    	name: 'MFC',
+	    	percentage: 40,
+	    }],
+	},
+	{
+	    name: 'C',
+	    percentage: 80,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 80,
+	    }],
+	},
+	{
+	    name: 'JavaScript',
+	    percentage: 70,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 80,
+	    },{
+	    	name: 'Node.js',
+	    	percentage: 70,
+	    },{
+	    	name: 'jQuery',
+	    	percentage: 60,
+	    },{
+	    	name: 'D3',
+	    	percentage: 10,
+	    }],
+	},
+	{
+	    name: 'MATLAB',
+	    percentage: 80,
+	    subList: [{
+	    	name: 'Computer Vision',
+	    	percentage: 60,
+	    },{
+	    	name: 'Machine Learning',
+	    	percentage: 60,
+	    }],
+	},
+	{
+	    name: 'Processing',
+	    percentage: 60,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 60,
+	    }],
+	},
+	{
+	    name: 'Objective-C',
+	    percentage: 40,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 40,
+	    },{
+	    	name: 'Cocoa',
+	    	percentage: 30,
+	    }],
+	},
+	{
+	    name: 'Operating System:',
+	    percentage: 101,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Windows',
+	    percentage: 100,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Mac OS',
+	    percentage: 80,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Linux',
+	    percentage: 60,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Android',
+	    percentage: 85,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'iOS',
+	    percentage: 80,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Office Tool:',
+	    percentage: 101,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Latex',
+	    percentage: 85,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Microsoft Office',
+	    percentage: 90,
+	    subList: [{
+	    	name: 'Word',
+	    	percentage: 90,
+	    },{
+	    	name: 'Excel',
+	    	percentage: 80,
+	    },{
+	    	name: 'PowerPoint',
+	    	percentage: 95,
+	    }],
+	},
+	{
+	    name: 'iWork',
+	    percentage: 85,
+	    subList: [{
+	    	name: 'Pages',
+	    	percentage: 70,
+	    },{
+	    	name: 'Numbers',
+	    	percentage: 70,
+	    },{
+	    	name: 'Keynote',
+	    	percentage: 95,
+	    }],
+	},
+	{
+	    name: 'Adobe',
+	    percentage: 70,
+	    subList: [{
+	    	name: 'Acrobat',
+	    	percentage: 80,
+	    },{
+	    	name: 'Photoshop',
+	    	percentage: 70,
+	    },{
+	    	name: 'Dreamweaver',
+	    	percentage: 40,
+	    },{
+	    	name: 'Illustrator',
+	    	percentage: 30,
+	    }],
+	},
+	{
+	    name: 'Sketch (Mac)',
+	    percentage: 50,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Language:',
+	    percentage: 101,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Chinese (Mandarin)',
+	    percentage: 100,
+	    subList: [{
+	    	name: 'Listening',
+	    	percentage: 100,
+	    }, {
+	    	name: 'Speaking',
+	    	percentage: 100,
+	    }, {
+	    	name: 'Reading',
+	    	percentage: 100,
+	    }, {
+	    	name: 'Writing',
+	    	percentage: 100,
+	    }],
+	},
+	{
+	    name: 'English',
+	    percentage: 90,
+	    subList: [{
+	    	name: 'Listening',
+	    	percentage: 80,
+	    }, {
+	    	name: 'Speaking',
+	    	percentage: 90,
+	    }, {
+	    	name: 'Reading',
+	    	percentage: 95,
+	    }, {
+	    	name: 'Writing',
+	    	percentage: 95,
+	    }],
+	},
+	{
+	    name: 'Japanese',
+	    percentage: 10,
+	    subList: [{
+	    	name: 'Listening',
+	    	percentage: 15,
+	    }, {
+	    	name: 'Speaking',
+	    	percentage: 10,
+	    }, {
+	    	name: 'Reading',
+	    	percentage: 10,
+	    }, {
+	    	name: 'Writing',
+	    	percentage: 10,
+	    }],
+	},
+	];
+
+	d3.select("#skill_list")
+		.append("ul")
+		.selectAll("li")
+	    .data(data)
+	    .enter()
+	    .append('li')
+	    .text(function(d) {
+	        return d.name;
+	    })
+	    .style({
+	        background: function(d) {
+	        	if (percentageToColor(d.percentage) == 'black')
+	            	return 'white';
+	            else return percentageToColor(d.percentage)
+	        },
+	        width: function(d) {
+	            return d.percentage + '%';
+	        },
+	        color: function(d) {
+	        	if (percentageToColor(d.percentage) == 'black')
+	        		return 'black';
+	        },
+	    })
+	    .attr("class", "searchable")
+	    .each(function(d) {
+	    	d3.select(this)
+	    	.append("ul")
+	    	.style({
+	    		"padding-left": "0",
+	    	})
+	    	.selectAll("li")
+		    .data(function(d) {return d.subList})
+		    .enter()
+		    .append('li')
+		    .text(function(d) {return d.name})
+		    .style({
+		        background: function(d) {
+		            return percentageToColor(d.percentage);
+		        },
+		        width: function(d) {
+		            return d.percentage + '%';
+		        },
+		        display: "none",
+	   		})
+	   		.attr("class", "searchable");
+	    })
+
+	d3.selectAll("#skill_list>ul>li")
+		.each(function() {
+			var state = true;
+			d3.select(this)
+			.on("click", function(){
+				if (state) {
+			    	expand.call(this);
+				}
+	    		else {
+	    			unexpand.call(this);
+	    		}
+	    		state = !state;
+	    	})
+		})
+
+	function expand() {
+		d3.select(this)
+	    	.transition()
+	    	.ease("elastic", 1, 0.1)
+		    .style({
+		        background: function(d) {
+		        	if (percentageToColor(d.percentage) != 'black')
+						return 'black';
+		        },
+		        width: "100%"
+		    })
+		    .selectAll("ul>li")
+		    .style({
+		    	display: "list-item",
+		    })
+	}
+
+	function unexpand() {
+		d3.select(this)
+			.transition()
+	    	.ease("elastic", 1, 10)
+		    .style({
+		        background: function(d) {
+		        	if (percentageToColor(d.percentage) != 'black')
+		            	return percentageToColor(d.percentage);
+		        },
+		        width: function(d) {
+		            return d.percentage + '%';
+		        },
+	   		})
+		    .selectAll("li")
+		    .style({
+		    	display: "none",
+		    })
+	}
+
+	function expandAll() {
+		d3.selectAll("#skill_list>ul>li")
+		.each(function() {
+			d3.select(this)
+	    	.transition()
+	    	.ease("elastic", 1, 0.1)
+		    .style({
+		        background: function(d) {
+		        	if (percentageToColor(d.percentage) != 'black')
+						return 'black';
+		        },
+		        width: "100%"
+		    })
+		    .selectAll("ul>li")
+		    .style({
+		    	display: "list-item",
+		    })
+		})
+	}
+
+	function unexpandAll() {
+		d3.selectAll("#skill_list>ul>li")
+		.each(function() {
+			d3.select(this)
+			.transition()
+	    	.ease("elastic", 1, 10)
+		    .style({
+		        background: function(d) {
+		        	if (percentageToColor(d.percentage) != 'black')
+						return percentageToColor(d.percentage);
+		        },
+		        width: function(d) {
+		            return d.percentage + '%';
+		        },
+	   		})
+		    .selectAll("li")
+		    .style({
+		    	display: "none",
+		    })
+		})
+	}
+
+	function percentageToColor(percentage) {
+		if (percentage == 0)
+			return "";
+		else if (percentage <= 20)
+			return "red";
+		else if (percentage <= 40)
+			return "orange";
+		else if (percentage <= 60)
+			return "green";
+		else if (percentage <= 80)
+			return "blue";
+		else if (percentage <= 100)
+			return "purple";
+		else if (percentage == 101)
+			return "black";
+	}
+
+	
+	$('#search_field').keypress(function(e){
+	    if(e.keyCode == 13){
+	    	event.preventDefault();
+	        var searchString = $('#search_field').val();
+	        $("li:contains('"+searchString+"')").show().css("background", "yellow");
+	    }
+    });
+	
+		
+</script>
+
+  </div>
+
+</article>
+
+      </div>
+
+      <footer class="site-footer">
+  <div class="container">
+    <ul class="social">
+  <li><a href="https://github.com/liuyang1520" target="_blank"><i class="icon icon-github"></i></a></li>
+  <li><a href="http://twitter.com/liuyang1520" target="_blank"><i class="icon icon-twitter"></i></a></li>
+  <li><a href="http://facebook.com/liuyang1520" target="_blank"><i class="icon icon-facebook"></i></a></li>
+  <li><a href="http://linkedin.com/in/liuyang1520" target="_blank"><i class="icon icon-linkedin"></i></a></li>
+</ul>
+    <p class="txt-medium-gray">
+      <small>&copy;2018 All rights reserved. Made with <a href="http://jekyllrb.com/" target="_blank">Jekyll</a></small>
+    </p>
+  </div>
+</footer>
+
+
+      <!-- <a href="http://github.com/liuyang1520/liuyang1520.github.io" target="_blank" class="github-corner"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#337ab7; color:#fff; position: absolute; top: 0; border: 0; right: 0;"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a> -->
+
+      <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+      <script>
+      $(document).ready(function() {
+        $('.sliding-panel-button,.sliding-panel-fade-screen,.sliding-panel-close').on('click touchstart',function (e) {
+          $('.sliding-panel-content,.sliding-panel-fade-screen').toggleClass('is-visible');
+          e.preventDefault();
+        });
+      });
+      </script>
+    </main>
+  </body>
+</html>

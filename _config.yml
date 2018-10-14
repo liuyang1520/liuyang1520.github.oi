@@ -1,0 +1,57 @@
+# Build settings
+permalink   : /posts/:categories/:year/:month/:day/:title/
+markdown    : kramdown
+# highlighter : rouge
+
+kramdown:
+  input: GFM
+
+gems: [jekyll-paginate]
+paginate: 7
+paginate_path: "/blog/page/:num/"
+comments: true
+
+source: source
+destination: _site
+sass:
+  sass_dir: _scss
+  style: compressed # expanded
+
+# SEO settings
+# title: end2end
+# description: "A free Jekyll theme for download"
+# keywords: "Jekyll, theme, free, download, SEO, blog, web"
+# url: http://nandomoreira.me
+# baseurl: "/end2end"
+# baseurl: ""
+
+# google_analytics: UA-52446115-1
+repo: http://github.com/liuyang1520/liuyang1520.github.io
+disqus_shortname: "liuyang1520"
+disqus_site_shortname: "liuyang1520"
+
+# Author settings
+author:
+  name      : Marvin Liu
+  job       : software developer
+  bio       : "Eliminate mediocrity, effectuate jocularity." #enumerate, effectuate
+  thumb     : /images/author.jpg
+  email     : liuyang1520@gmail.com
+  url       : http://liuyang1520.github.io
+  github    : https://github.com/liuyang1520
+  twitter   : http://twitter.com/liuyang1520
+  facebook  : http://facebook.com/liuyang1520
+  linkedin  : http://linkedin.com/in/liuyang1520
+
+# navbar pages
+navbar:
+  - slug: about
+    title: About
+  - slug: resume
+    title: Resume
+  - slug: skills
+    title: Skills
+  - slug: blog
+    title: Blog
+
+exclude: ["gulp", "node_modules", "bower", "bower_components", "config.rb", "src", "Gemfile", "Gemfile.lock", ".rvmrc", ".rbenv-version", "package.json", "gulpfile.js", "README.md", "Rakefile", "changelog.md"]

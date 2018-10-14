@@ -1,0 +1,578 @@
+---
+layout: page
+permalink: /skills/
+
+extra_css:
+  - 
+
+extra_js:
+  - https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js
+  - http://code.jquery.com/jquery-1.11.3.min.js
+---
+
+<style>
+#search_tool {
+    position: relative;
+    height: 60px;
+    right: 10px;
+}
+
+#search_field {
+    height: 60px;
+    font-size: 30px;
+    display: inline-block;
+    font-weight: 100;
+    border: none;
+    outline: none;
+    color: #555;
+    padding: 3px;
+    padding-right: 60px;
+    width: 0px;
+    position: absolute;
+    background: none;
+    z-index: 3;
+    transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+    cursor: pointer;
+    right: 160px;
+    box-shadow: none;
+}
+
+#search_field:focus:hover {
+    border-bottom: 1px solid #BBB;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06)
+}
+
+#search_field:focus {
+    width: 700px;
+    z-index: 1;
+    border-bottom: 1px solid #BBB;
+    cursor: text;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06)
+}
+
+#search_submit {
+    height: 67px;
+    width: 63px;
+    display: inline-block;
+    color: red;
+    float: right;
+    background: url("/images/search_icon_45px.svg") center center no-repeat;
+    text-indent: -10000px;
+    border: none;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: opacity .4s ease;
+    right: 160px;
+    outline: none;
+}
+
+#search_submit:hover {
+    opacity: 0.8;
+}
+
+#expand_Button {
+	height: 67px;
+    width: 63px;
+    opacity: 0.3;
+    outline: none;
+    border: none;
+    position: absolute;
+    right: 80px;
+	background: url("/images/expand_icon_45px.svg") center center no-repeat;
+}
+
+#unexpand_Button {
+	height: 67px;
+    width: 63px;
+    opacity: 0.3;
+    outline: none;
+    border: none;
+    position: absolute;
+    right: 0;
+	background: url("/images/unexpand_icon_45px.svg") center center no-repeat;
+}
+
+ul li {
+	color: white;
+    padding: 10px 20px;
+    list-style-type: none;
+    &:nth-child(2) {
+        color: red;
+    };
+}
+</style>
+
+<div>
+    <div id="search_tool">
+        <form autocomplete="on">
+            <input id="search_field" name="highlight" type="text" placeholder="Highlight a skill :)">
+            <input id="search_submit" type="submit">
+            <input id="expand_Button" type="button" onclick="expandAll()">
+    		<input id="unexpand_Button" type="button" onclick="unexpandAll()">
+        </form>
+    </div>
+</div>
+<br>
+<div style="padding-left: 25px; text-align:center; color: white;">
+	<table>
+		<tr>
+    		<td style="background-color: red">Beginner <br> 1-3 months</td>
+	    	<td style="background-color: orange">Intermediate <br> 4-12 months</td>
+	    	<td style="background-color: green">Proficient <br> 1-2 years</td>
+	    	<td style="background-color: blue">Advanced <br> 3-5 years</td>
+	    	<td style="background-color: purple">Expert <br> 5+ years</td>
+  		</tr>
+	</table>
+</div>
+<div id="skill_list">
+</div>
+
+<script>
+	var data = [
+	{
+	    name: 'Programming Language:',
+	    percentage: 101,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Python',
+	    percentage: 80,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 80,
+	    },{
+	    	name: 'Matplotlib',
+	    	percentage: 70,
+	    },{
+	    	name: 'Django',
+	    	percentage: 10,
+	    }],
+	},
+	{
+	    name: 'Java',
+	    percentage: 60,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 60,
+	    },{
+	    	name: 'JUnit',
+	    	percentage: 50,
+	    }],
+	},
+	{
+	    name: 'C++',
+	    percentage: 50,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 50,
+	    },{
+	    	name: 'MFC',
+	    	percentage: 40,
+	    }],
+	},
+	{
+	    name: 'C',
+	    percentage: 80,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 80,
+	    }],
+	},
+	{
+	    name: 'JavaScript',
+	    percentage: 70,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 80,
+	    },{
+	    	name: 'Node.js',
+	    	percentage: 70,
+	    },{
+	    	name: 'jQuery',
+	    	percentage: 60,
+	    },{
+	    	name: 'D3',
+	    	percentage: 10,
+	    }],
+	},
+	{
+	    name: 'MATLAB',
+	    percentage: 80,
+	    subList: [{
+	    	name: 'Computer Vision',
+	    	percentage: 60,
+	    },{
+	    	name: 'Machine Learning',
+	    	percentage: 60,
+	    }],
+	},
+	{
+	    name: 'Processing',
+	    percentage: 60,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 60,
+	    }],
+	},
+	{
+	    name: 'Objective-C',
+	    percentage: 40,
+	    subList: [{
+	    	name: 'Standard Library',
+	    	percentage: 40,
+	    },{
+	    	name: 'Cocoa',
+	    	percentage: 30,
+	    }],
+	},
+	{
+	    name: 'Operating System:',
+	    percentage: 101,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Windows',
+	    percentage: 100,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Mac OS',
+	    percentage: 80,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Linux',
+	    percentage: 60,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Android',
+	    percentage: 85,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'iOS',
+	    percentage: 80,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Office Tool:',
+	    percentage: 101,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Latex',
+	    percentage: 85,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Microsoft Office',
+	    percentage: 90,
+	    subList: [{
+	    	name: 'Word',
+	    	percentage: 90,
+	    },{
+	    	name: 'Excel',
+	    	percentage: 80,
+	    },{
+	    	name: 'PowerPoint',
+	    	percentage: 95,
+	    }],
+	},
+	{
+	    name: 'iWork',
+	    percentage: 85,
+	    subList: [{
+	    	name: 'Pages',
+	    	percentage: 70,
+	    },{
+	    	name: 'Numbers',
+	    	percentage: 70,
+	    },{
+	    	name: 'Keynote',
+	    	percentage: 95,
+	    }],
+	},
+	{
+	    name: 'Adobe',
+	    percentage: 70,
+	    subList: [{
+	    	name: 'Acrobat',
+	    	percentage: 80,
+	    },{
+	    	name: 'Photoshop',
+	    	percentage: 70,
+	    },{
+	    	name: 'Dreamweaver',
+	    	percentage: 40,
+	    },{
+	    	name: 'Illustrator',
+	    	percentage: 30,
+	    }],
+	},
+	{
+	    name: 'Sketch (Mac)',
+	    percentage: 50,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Language:',
+	    percentage: 101,
+	    subList: [{
+	    	name: '',
+	    	percentage: 0,
+	    }],
+	},
+	{
+	    name: 'Chinese (Mandarin)',
+	    percentage: 100,
+	    subList: [{
+	    	name: 'Listening',
+	    	percentage: 100,
+	    }, {
+	    	name: 'Speaking',
+	    	percentage: 100,
+	    }, {
+	    	name: 'Reading',
+	    	percentage: 100,
+	    }, {
+	    	name: 'Writing',
+	    	percentage: 100,
+	    }],
+	},
+	{
+	    name: 'English',
+	    percentage: 90,
+	    subList: [{
+	    	name: 'Listening',
+	    	percentage: 80,
+	    }, {
+	    	name: 'Speaking',
+	    	percentage: 90,
+	    }, {
+	    	name: 'Reading',
+	    	percentage: 95,
+	    }, {
+	    	name: 'Writing',
+	    	percentage: 95,
+	    }],
+	},
+	{
+	    name: 'Japanese',
+	    percentage: 10,
+	    subList: [{
+	    	name: 'Listening',
+	    	percentage: 15,
+	    }, {
+	    	name: 'Speaking',
+	    	percentage: 10,
+	    }, {
+	    	name: 'Reading',
+	    	percentage: 10,
+	    }, {
+	    	name: 'Writing',
+	    	percentage: 10,
+	    }],
+	},
+	];
+
+	d3.select("#skill_list")
+		.append("ul")
+		.selectAll("li")
+	    .data(data)
+	    .enter()
+	    .append('li')
+	    .text(function(d) {
+	        return d.name;
+	    })
+	    .style({
+	        background: function(d) {
+	        	if (percentageToColor(d.percentage) == 'black')
+	            	return 'white';
+	            else return percentageToColor(d.percentage)
+	        },
+	        width: function(d) {
+	            return d.percentage + '%';
+	        },
+	        color: function(d) {
+	        	if (percentageToColor(d.percentage) == 'black')
+	        		return 'black';
+	        },
+	    })
+	    .attr("class", "searchable")
+	    .each(function(d) {
+	    	d3.select(this)
+	    	.append("ul")
+	    	.style({
+	    		"padding-left": "0",
+	    	})
+	    	.selectAll("li")
+		    .data(function(d) {return d.subList})
+		    .enter()
+		    .append('li')
+		    .text(function(d) {return d.name})
+		    .style({
+		        background: function(d) {
+		            return percentageToColor(d.percentage);
+		        },
+		        width: function(d) {
+		            return d.percentage + '%';
+		        },
+		        display: "none",
+	   		})
+	   		.attr("class", "searchable");
+	    })
+
+	d3.selectAll("#skill_list>ul>li")
+		.each(function() {
+			var state = true;
+			d3.select(this)
+			.on("click", function(){
+				if (state) {
+			    	expand.call(this);
+				}
+	    		else {
+	    			unexpand.call(this);
+	    		}
+	    		state = !state;
+	    	})
+		})
+
+	function expand() {
+		d3.select(this)
+	    	.transition()
+	    	.ease("elastic", 1, 0.1)
+		    .style({
+		        background: function(d) {
+		        	if (percentageToColor(d.percentage) != 'black')
+						return 'black';
+		        },
+		        width: "100%"
+		    })
+		    .selectAll("ul>li")
+		    .style({
+		    	display: "list-item",
+		    })
+	}
+
+	function unexpand() {
+		d3.select(this)
+			.transition()
+	    	.ease("elastic", 1, 10)
+		    .style({
+		        background: function(d) {
+		        	if (percentageToColor(d.percentage) != 'black')
+		            	return percentageToColor(d.percentage);
+		        },
+		        width: function(d) {
+		            return d.percentage + '%';
+		        },
+	   		})
+		    .selectAll("li")
+		    .style({
+		    	display: "none",
+		    })
+	}
+
+	function expandAll() {
+		d3.selectAll("#skill_list>ul>li")
+		.each(function() {
+			d3.select(this)
+	    	.transition()
+	    	.ease("elastic", 1, 0.1)
+		    .style({
+		        background: function(d) {
+		        	if (percentageToColor(d.percentage) != 'black')
+						return 'black';
+		        },
+		        width: "100%"
+		    })
+		    .selectAll("ul>li")
+		    .style({
+		    	display: "list-item",
+		    })
+		})
+	}
+
+	function unexpandAll() {
+		d3.selectAll("#skill_list>ul>li")
+		.each(function() {
+			d3.select(this)
+			.transition()
+	    	.ease("elastic", 1, 10)
+		    .style({
+		        background: function(d) {
+		        	if (percentageToColor(d.percentage) != 'black')
+						return percentageToColor(d.percentage);
+		        },
+		        width: function(d) {
+		            return d.percentage + '%';
+		        },
+	   		})
+		    .selectAll("li")
+		    .style({
+		    	display: "none",
+		    })
+		})
+	}
+
+	function percentageToColor(percentage) {
+		if (percentage == 0)
+			return "";
+		else if (percentage <= 20)
+			return "red";
+		else if (percentage <= 40)
+			return "orange";
+		else if (percentage <= 60)
+			return "green";
+		else if (percentage <= 80)
+			return "blue";
+		else if (percentage <= 100)
+			return "purple";
+		else if (percentage == 101)
+			return "black";
+	}
+
+	
+	$('#search_field').keypress(function(e){
+	    if(e.keyCode == 13){
+	    	event.preventDefault();
+	        var searchString = $('#search_field').val();
+	        $("li:contains('"+searchString+"')").show().css("background", "yellow");
+	    }
+    });
+	
+		
+</script>

@@ -1,0 +1,296 @@
+---
+layout: page
+permalink: /resume/
+
+extra_css:
+  - /css/resumeCSS/reset.css
+  - /css/resumeCSS/style.css
+
+extra_js:
+  - http://code.jquery.com/jquery-1.11.3.min.js
+  - /js/modernizr.js
+  - /js/main.js
+---
+
+<style>
+	.cd-container strong, b, strong *, b * {
+  		font-weight: bold;
+	}
+	.cd-container ul {
+		font-weight: 300;
+		margin-left: 0;
+		padding-left: 0;
+	}
+	.cd-container ul li:before {
+	    content: "➤\00a0";
+	}
+	.cd-container ul ul {
+		margin-top: 0;
+		margin-left: 1em;
+	}
+	.cd-container ul li ul li:before {
+		content: "➢\00a0";
+	}
+</style>
+
+<script>
+	$(document).ready(function(){
+		$(".toggler").click(function() {
+			$("#pdfPreview").attr("src", "https://raw.githubusercontent.com/liuyang1520/end2end/master/images/YangLiu_Resume_Web.jpg");
+			$(this).next().slideToggle("fast");}
+			).next().hide();
+	})
+</script>
+
+<p class="toggler"><a> Show the formal resume </a></p>
+<div style="display: block; overflow: hidden;">
+	<a href="https://www.dropbox.com/s/9ztrl43x4h3c0rw/YangLiu_Resume_Web.pdf?dl=0" target="_blank">
+		<img id="pdfPreview" src="" alt="Formal Resume">
+	</a>
+</div>
+
+<!-- <a href="https://www.dropbox.com/s/9ztrl43x4h3c0rw/YangLiu_Resume_Web.pdf?dl=0" target="_blank">Show the formal resume.</a> -->
+
+<section id="cd-timeline" class="cd-container">
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-location">
+			<img src="/images/cd-icon-location.svg" alt="Location">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>B.E. in Electronics &amp; Information Engineering, Huazhong University of Science &amp; Technology</h2>
+			<ul>
+				<li>Started undergraduate study in the <strong>Department of Electronics &amp; Information Engineering</strong> at the <strong>Huazhong University of Science &amp; Technology (HUST)</strong>, located in Wuhan, Hubei province, China.</li>
+				<li>GPA Ranking: 34/171 (top 20%)</li>
+			</ul>
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3437.4643937889373!2d114.41147731512619!3d30.50790498171608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x342ea4b10547fc5b%3A0xfa5bdb1c1c1f81ae!2sHuazhong+University+of+Science+and+Technology!5e0!3m2!1sen!2sca!4v1457376606669" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+			<a href="http://english.hust.edu.cn/" class="cd-read-more" target="_blank">Read more</a>
+			<span class="cd-date">Sept. 2009 – Jun. 2013</span>
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-picture">
+			<img src="/images/cd-icon-picture.svg" alt="Picture">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>Life in HUST</h2>
+			<ul>
+				<li>Dormitory <a href="https://raw.githubusercontent.com/liuyang1520/end2end/master/images/hust/outside.jpeg">outside</a> and <a href="https://raw.githubusercontent.com/liuyang1520/end2end/master/images/hust/inside.jpeg">inside</a>.</li>
+				<li><a href="https://raw.githubusercontent.com/liuyang1520/end2end/master/images/hust/basketball.jpeg">Basketball teammates</a>.</li>
+				<li><a href="https://raw.githubusercontent.com/liuyang1520/end2end/master/images/hust/dota.jpeg">Someone was playing Dota</a>.</li>
+				<li><a href="https://raw.githubusercontent.com/liuyang1520/end2end/master/images/hust/performance.jpeg">A reading performance</a>.</li>
+				<li><a href="https://raw.githubusercontent.com/liuyang1520/end2end/master/images/hust/friends.jpeg">Bros 4 cards</a>.</li>
+			</ul>
+			<!-- <a href="#0" class="cd-read-more">Read more</a> -->
+			<!-- <span class="cd-date">Jan 24</span> -->
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-text">
+			<img src="/images/cd-icon-text.svg" alt="Text">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>Mathematical Modeling Invitation Tournament</h2>
+			<ul>
+				<li>Submitted our project "A Design of Urban Bicycle System" to <em>Central China Undergraduate Mathematical Modeling Invitation Tournament</em>.</li>
+				<li>Third Prize (93/623).</li>
+			</ul>
+			<!-- <a href="#0" class="cd-read-more">Read more</a> -->
+			<span class="cd-date">Apr. 2010</span>
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-text">
+			<img src="/images/cd-icon-text.svg" alt="Text">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>ACM Programming Contest, HUST</h2>
+			<ul>
+				<li>The ACM (algorithm) Programming Contest was held by the Electrical &amp; Electronic Engineering department in HUST.</li>
+				<li>Second Prize (5/100+)</li>
+			</ul>
+			<!-- <a href="#0" class="cd-read-more">Read more</a> -->
+			<span class="cd-date">Nov. 2010</span>
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-text">
+			<img src="/images/cd-icon-text.svg" alt="Text">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>Department of Secretary in Law Association, HUST</h2>
+			<p>Led a group of 10 students in the department. Supervised and recorded conferences. Negotiated and coordinated with other departments. Organized and arranged several university-wide events, including "Law Film Week" and "Moot Court".</p>
+			<!-- <a href="#0" class="cd-read-more">Read more</a> -->
+			<span class="cd-date">Oct. 2009 – June 2011</span>
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-text">
+			<img src="/images/cd-icon-text.svg" alt="Text">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>National Anti-Counterfeit Engineer Research Center, HUST</h2>
+			<ul>
+				<li>Joined project "White Wine Detection Fingerprint Database" led by <em>Ministry of Public Security (China)</em>. Extracted features from the infrared and ultraviolet spectrums of various wines, to create a fingerprint database and detect wine adulteration with machine learning techniques.</li>
+				<li>Implemented data pre-processing approaches, such as PCA. Proposed new baseline correction algorithm. Implemented and compared detection accuracy results of machine learning algorithms in MATLAB, including PLS regression, SVM, and artificial neural networks. Developed new integrated algorithms to improve detection accuracy.</li>
+			</ul>
+			<a href="http://nacerc.hust.edu.cn/" class="cd-read-more" target="_blank">Read more</a>
+			<span class="cd-date">Dec. 2011 – Sept. 2012</span>
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-text">
+			<img src="/images/cd-icon-text.svg" alt="Text">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>Campus Life Assistant (Android Development)</h2>
+			<ul>
+				<li>Designed and developed an Android app for the <em>China Internet Contest for Cloud &amp; Mobile Computing (iCOME 2012)</em>. The iCOME was held by China Cloud Industry Alliance including Baidu, Lenovo, Tencent and Alibaba. Our team (3 members) was invited to Beijing to visit companies involved with cloud computing, to attend the "Baidu 2012 Worldwide Conference", and for the final contest (top 10 in China).</li>
+				<li>The Android app embedded with LBS and SNS, was targeted at university students for facilitating their campus lives. Developed basic interface and user flows. Built a database to track information of posted second-hand items with a WAMP server. Designed copywriting for the app.</li>
+			</ul>
+			<a href="http://www.china-cloud.com/zt/2012iCOME/" class="cd-read-more" target="_blank">Read more</a>
+			<span class="cd-date">May. 2012 – Oct. 2012</span>
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-location">
+			<img src="/images/cd-icon-location.svg" alt="Location">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>Sales Department, China Galaxy Securities Co., Ltd, Wuhan, China</h2>
+			<p>Interned in a leading Chinese brokerage and investment bank. Learned daily business processes and Chinese stock trading rules. Worked as an account manager, served customers, promoted wealth management products. Made speeches and slides for branch manager.</p>
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3433.792163110767!2d114.28425131512859!3d30.611624981679636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x342eaed557b3580b%3A0xfb8e4e60d5b375e1!2z5Lit5Zu96ZO25rKz6K-B5Yi45YWs5Y-46Iqx5qGl6JCl5Lia6YOo!5e0!3m2!1sen!2sca!4v1457376484551" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+			<a href="http://www.chinastock.com.cn/en/index.shtml" class="cd-read-more" target="_blank">Read more</a>
+			<span class="cd-date">Nov. 2012 – Feb. 2013</span>
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-location">
+			<img src="/images/cd-icon-location.svg" alt="Location">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>M.S. (thesis-based) in Computer Science, University of Calgary</h2>
+			<ul>
+				<li>Started graduate study in the <strong>Department of Computer Science</strong> at the <strong>University of Calgary (U of C)</strong>, located in Calgary, Alberta, Canada. Awarded Post-Graduate Scholarship in two years' study by the department.</li>
+				<li>GPA: 3.65 / 4.00</li>
+				<li>Selected Course Work:
+					<ul>
+						<li>CPSC 413, Design and Analysis of Algorithms - B+</li>
+						<li>CPSC 601.38, Networking Systems - A</li>
+						<li>CPSC 626, Network Systems Security - A</li>
+						<li>CPSC 601.28, Creative Programming for Digital Media - A</li>
+					</ul>
+				</li>
+			</ul>
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2506.64191859191!2d-114.13798938447215!3d51.07815987956703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53717db7481cb3b1%3A0x36aff4a9e3c803fb!2sUniversity+of+Calgary!5e0!3m2!1sen!2sca!4v1457376082413" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+			<a href="http://www.cpsc.ucalgary.ca/" class="cd-read-more" target="_blank">Read more</a>
+			<span class="cd-date">Sept. 2013 – Dec. 2015</span>
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-picture">
+			<img src="/images/cd-icon-picture.svg" alt="Picture">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>Life in Canada</h2>
+			<ul>
+				<li><a href="https://raw.githubusercontent.com/liuyang1520/end2end/master/images/ucalgary/Calgary.jpg">Mountain view</a> in Calgary.</li>
+				<li><a href="https://raw.githubusercontent.com/liuyang1520/end2end/master/images/ucalgary/Halloween.jpg">Halloween party</a> in CPSC at U of C.</li>
+				<li><a href="https://raw.githubusercontent.com/liuyang1520/end2end/master/images/ucalgary/Moraine_Lake.jpg">Moraine Lake</a> in Banff National Park.</li>
+				<li><a href="https://github.com/liuyang1520/end2end/blob/master/images/ucalgary/SeaWorld_San_Diego.jpg">SeaWorld</a> in San Diego, California.</li>
+				<li><a href="https://raw.githubusercontent.com/liuyang1520/end2end/master/images/ucalgary/Vancouver_eagle.jpg">Eagle</a> and <a href="https://raw.githubusercontent.com/liuyang1520/end2end/master/images/ucalgary/Vancouver_park.jpg">ocean</a> in Vancouver.</li>
+				<li><a href="https://raw.githubusercontent.com/liuyang1520/end2end/master/images/ucalgary/Toronto.jpg">University of Toronto</a> in Toronto.</li>
+			</ul>
+			<!-- <a href="#0" class="cd-read-more">Read more</a> -->
+			<!-- <span class="cd-date">Jan 24</span> -->
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-text">
+			<img src="/images/cd-icon-text.svg" alt="Text">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>Network Group, Wedge Networks Inc.</h2>
+			<ul>
+				<li>Did research in Linear Programming, PTAS and Cloud Computing.</li>
+				<li>Did price analyzing of Walmart cloud services, drafted white book in cloud security (CloudEthernet) for <a href="http://www.wedgenetworks.com/" target="_blank">Wedge Networks</a>.</li>
+			</ul>
+			<span class="cd-date">Oct. 2013 – July 2014</span>
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-text">
+			<img src="/images/cd-icon-text.svg" alt="Text">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>Teaching Assistant</h2>
+			<ul>
+				<li>CPSC 217: Introduction to Computer Science for Multidisciplinary Studies I (Python) - Winter 2014</li>
+				<li>CPSC 331: Data Structures, Algorithms, and Their Analysis (Java) - Fall 2014</li>
+				<li>CPSC 413: Design and Analysis of Algorithms - Winter 2015</li>
+			</ul>
+			<span class="cd-date">Jan. 2014 – June 2015</span>
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-text">
+			<img src="/images/cd-icon-text.svg" alt="Text">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>Snapgram (Node.js)</h2>
+			<p>Snapgram is a photo sharing Web site developed by our team (3 members) with Express, Jade, MySQL, GM, Mocha packages in Node.js. The site contains the basic login and logout functionality, enables users to upload and share photos from local devices, to follow or unfollow other users, to search and view photos, and to display photo feeds from followed users. Designed front end pages and user flows using Jade and Bootstrap. Connected front end to back end in the main JavaScript file. Tested the functionalities of the Web site using Mocha and Should. Fixed several bugs and improved performance when handling large amount of concurrent requests and followers.</p>
+			<span class="cd-date">Jan. 2014 – May. 2014</span>
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-text">
+			<img src="/images/cd-icon-text.svg" alt="Text">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>Animation &amp; Game Design (Processing, Java)</h2>
+			<ul>
+				<li>Learned and used Processing (an open source programming language built on Java and Java syntax) for creative programming for digital media. Created a 2D animation in memory of the game Braid. Developed a 2D tower defense game, and upgraded it to a 3D first person shooting game. Designed a virtual piano game, which was played with computer keyboard.</li>
+				<li>Studied animation and game design approaches. Stepped into the world of digital arts visualization and innovation. Applied image processing techniques like thresholding and sharpening to the animation. Implemented a 3D camera system and a trajectory tracking framework in the 3D game. Implemented a 61-key piano tunes generator using sine waves.</li>
+			</ul>
+			<span class="cd-date">Sept. 2014 – Dec. 2014</span>
+		</div>
+	</div>
+
+	<div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-text">
+			<img src="/images/cd-icon-text.svg" alt="Text">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>Network Group, Department of Computer Science, U of C</h2>
+			<ul>
+				<li>Supervised by <a href="http://pages.cpsc.ucalgary.ca/~carey/" target="_blank">Dr. Carey Williamson</a>, did research in network workload characterization and traffic measurement. Collected and analyzed packet-level traffic between campus and the Internet. Focused on HTTP traffic generated by two campus Web servers</li>
+				<li>Processed HTTP traffic data (30 GB of compressed log files per day, Bro logging system) with Awk (shell) scripts and summarized request-response statistical information with Python. Discovered redundant and inefficient request traffic, studied behaviors of Web robots, proposed solutions for inefficiency issues. Completed master thesis. Submitted papers to IMC, PAM conferences, WWW workshops.</li>
+			</ul>
+			<span class="cd-date">Dec. 2014 – Dec. 2015</span>
+		</div>
+	</div>
+
+	<!-- <div class="cd-timeline-block">
+		<div class="cd-timeline-img cd-movie">
+			<img src="/images/cd-icon-movie.svg" alt="Movie">
+		</div>
+		<div class="cd-timeline-content">
+			<h2>Title of section 2</h2>
+			<p></p>
+			<a href="#0" class="cd-read-more">Read more</a>
+			<span class="cd-date">Jan 18</span>
+		</div>
+	</div> -->
+</section>
